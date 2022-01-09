@@ -45,14 +45,19 @@ function App() {
   //   console.log("favimages", favImages);
   // }, [images]);
 
+  const toFav = (image) => {
+    image.isFav ? (image.isFav = false) : (image.isFav = true);
+    filterFavs();
+  };
+
   return (
     <>
-      <Header handleFavSortClick={handleFavSortClick} />
+      <Header favSortClicked={favSortClicked}handleFavSortClick={handleFavSortClick} />
       <main>
         {!favSortClicked ? (
-          <Tiles images={images} filterFavs={filterFavs} />
+          <Tiles images={images} toFav={toFav} />
         ) : (
-          <Favourites favImages={favImages} />
+          <Favourites favImages={favImages} toFav={toFav} />
         )}
       </main>
     </>

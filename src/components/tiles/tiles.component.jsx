@@ -1,11 +1,6 @@
 import React from "react";
 
-function Tiles({ images, filterFavs }) {
-  const toFav = (image) => {
-    image.isFav ? (image.isFav = false) : (image.isFav = true);
-    filterFavs();
-  };
-
+function Tiles({ images, toFav }) {
   return (
     <div>
       {images.length > 0 &&

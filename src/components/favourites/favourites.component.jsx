@@ -1,6 +1,6 @@
 import React from "react";
 
-const Favourites = ({ favImages }) => {
+const Favourites = ({ toFav, favImages }) => {
   return (
     <div>
       {favImages.length > 0 ? (
@@ -9,9 +9,9 @@ const Favourites = ({ favImages }) => {
             <img
               src={image.url}
               alt={image.title}
-              // onClick={() => {
-              //   toFav(image);
-              // }}
+              onClick={() => {
+                toFav(image);
+              }}
             />
           </div>
         ))
