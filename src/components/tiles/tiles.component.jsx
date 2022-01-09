@@ -1,10 +1,11 @@
 import React from "react";
 
 function Tiles({ images }) {
-  const toFav = (isFav) => {
-    isFav ? (isFav = false) : (isFav = true);
+  const toFav = (image) => {
+    console.log("before click", image);
+    image.isFav ? (image.isFav = false) : (image.isFav = true);
+    console.log("after click", image);
   };
-
   return (
     <div>
       {images.length > 0 &&
@@ -13,7 +14,9 @@ function Tiles({ images }) {
             <img
               src={image.url}
               alt={image.title}
-              onClick={() => toFav(image.isFav)}
+              onClick={() => {
+                toFav(image);
+              }}
             />
           </div>
         ))}

@@ -3,17 +3,18 @@ import axios from "axios";
 
 import Header from "./components/header/header.component";
 import Tiles from "./components/tiles/tiles.component";
+import Favourites from "./components/favourites/favourites.component";
 
 const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}&count=20`;
 
-// clicked
-
 function App() {
+  // Favourite in nav bar clicked or not
   const [favSortClicked, setFavSortClicked] = useState(false);
   const handleFavSortClick = () => {
     favSortClicked ? setFavSortClicked(false) : setFavSortClicked(true);
   };
 
+  // fetch images
   const [images, setImages] = useState([]);
 
   const fetchImages = async () => {
@@ -29,14 +30,31 @@ function App() {
     fetchImages();
   }, []);
 
+  // filter favourite images
+  const [favImages, setFavImages] = useState([]);
+
+  // const filterFavs = () => {
+  //   const copyImages = images;
+  //   copyImages.filter((image) => image.isFav === true);
+  //   setFavImages(copyImages);
+  // };
+
+  useEffect(() => {
+    const copyImages = images;
+    copyImages.filter((image) => image.isFav === true);
+    setFavImages(copyImages);
+    console.log("favimages", favImages);
+  }, [images]);
+
   return (
     <>
-      <Header setFavSortClicked={handleFavSortClick} />
+      <Header handleFavSortClick={handleFavSortClick} />
       <main>
         {!favSortClicked ? (
           <Tiles images={images} />
         ) : (
-          <h3>this is fav sort page</h3>
+          <Favourites favImages={favImages} />
+          // <h3>hello</h3>
         )}
       </main>
     </>
