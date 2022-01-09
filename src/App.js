@@ -6,8 +6,8 @@ import Tiles from "./components/tiles/tiles.component";
 function App() {
   return (
     <>
+      <Header />
       <main>
-        <Header />
         <Tiles />
       </main>
     </>
