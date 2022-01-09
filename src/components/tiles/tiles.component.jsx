@@ -19,8 +19,8 @@ function Tiles() {
     fetchImages();
   }, []);
 
-  const toFav = (image) => {
-    image.isFav ? (image.isFav = false) : (image.isFav = true);
+  const toFav = (isFav) => {
+    isFav ? (isFav = false) : (isFav = true);
   };
 
   return (
@@ -31,7 +31,7 @@ function Tiles() {
             <img
               src={image.url}
               alt={image.title}
-              onClick={() => toFav(image)}
+              onClick={() => toFav(image.isFav)}
             />
           </div>
         ))}
