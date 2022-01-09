@@ -33,28 +33,26 @@ function App() {
   // filter favourite images
   const [favImages, setFavImages] = useState([]);
 
-  // const filterFavs = () => {
+  const filterFavs = () => {
+    const copyImages = images.filter((image) => image.isFav === true);
+    setFavImages(copyImages);
+  };
+
+  // useEffect(() => {
   //   const copyImages = images;
   //   copyImages.filter((image) => image.isFav === true);
   //   setFavImages(copyImages);
-  // };
-
-  useEffect(() => {
-    const copyImages = images;
-    copyImages.filter((image) => image.isFav === true);
-    setFavImages(copyImages);
-    console.log("favimages", favImages);
-  }, [images]);
+  //   console.log("favimages", favImages);
+  // }, [images]);
 
   return (
     <>
       <Header handleFavSortClick={handleFavSortClick} />
       <main>
         {!favSortClicked ? (
-          <Tiles images={images} />
+          <Tiles images={images} filterFavs={filterFavs} />
         ) : (
           <Favourites favImages={favImages} />
-          // <h3>hello</h3>
         )}
       </main>
     </>
