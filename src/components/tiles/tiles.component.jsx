@@ -1,24 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 
-const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}&count=20`;
-
-function Tiles() {
-  const [images, setImages] = useState([]);
-
-  const fetchImages = async () => {
-    const { data } = await axios.get(url);
-    data.map((d) => {
-      d.isFav = false;
-      return d;
-    });
-    setImages(data);
-  };
-
-  useEffect(() => {
-    fetchImages();
-  }, []);
-
+function Tiles({ images }) {
   const toFav = (isFav) => {
     isFav ? (isFav = false) : (isFav = true);
   };
