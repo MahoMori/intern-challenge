@@ -17,6 +17,5 @@ export const HeaderLogoLink = styled.a`
 `;
 
 export const MyFav = styled.h3`
-  //   float: right;
   cursor: pointer;
 `;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import { SolarSystemLoading } from "react-loadingg";
+
 import Header from "./components/header/header.component";
 import Tiles from "./components/tiles/tiles.component";
 import Favourites from "./components/favourites/favourites.component";
@@ -14,16 +16,28 @@ function App() {
     favSortClicked ? setFavSortClicked(false) : setFavSortClicked(true);
   };
 
+  // loading or not
+  const [loading, setLoading] = useState(true);
+
   // fetch images
   const [images, setImages] = useState([]);
 
   const fetchImages = async () => {
-    const { data } = await axios.get(url);
-    data.map((d) => {
-      d.isFav = false;
-      return d;
+    await axios.get(url).then((result) => {
+      const { data } = result;
+      data.map((d) => {
+        d.isFav = false;
+        return d;
+      });
+      setImages(data);
+      setLoading(false);
     });
-    setImages(data);
+    // const { data } = await axios.get(url);
+    // data.map((d) => {
+    //   d.isFav = false;
+    //   return d;
+    // });
+    // setImages(data);
   };
 
   useEffect(() => {
@@ -52,14 +66,29 @@ function App() {
 
   return (
     <>
-      <Header favSortClicked={favSortClicked}handleFavSortClick={handleFavSortClick} />
-      <main>
+      <Header
+        favSortClicked={favSortClicked}
+        handleFavSortClick={handleFavSortClick}
+      />
+      {loading ? (
+        // #ffae00
+        <SolarSystemLoading color="#000080" size="large" />
+      ) : (
+        <main>
+          {!favSortClicked ? (
+            <Tiles images={images} toFav={toFav} />
+          ) : (
+            <Favourites favImages={favImages} toFav={toFav} />
+          )}
+        </main>
+      )}
+      {/* <main>
         {!favSortClicked ? (
           <Tiles images={images} toFav={toFav} />
         ) : (
           <Favourites favImages={favImages} toFav={toFav} />
         )}
-      </main>
+      </main> */}
     </>
   );
 }

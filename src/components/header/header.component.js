@@ -14,7 +14,7 @@ const Header = ({ favSortClicked, handleFavSortClick }) => {
       <nav>
         {!favSortClicked ? (
           <MyFav onClick={handleFavSortClick}>
-            <FontAwesomeIcon icon={faHeart} style={{ color: "#ff32ff" }} />
+            <FontAwesomeIcon icon={faHeart} style={{ color: "#FF84FF" }} />
             &nbsp; My Favourite
           </MyFav>
         ) : (
@@ -23,10 +23,6 @@ const Header = ({ favSortClicked, handleFavSortClick }) => {
             &nbsp; Back to List
           </MyFav>
         )}
-        {/* <MyFav onClick={handleFavSortClick}>
-          <FontAwesomeIcon icon={faHeart} style={{ color: "#ff32ff" }} />
-          &nbsp; My Favourite
-        </MyFav> */}
       </nav>
     </HeaderStyle>
   );
