@@ -8,6 +8,7 @@ export const HeaderStyle = styled.header`
   // justify-content: space-around;
   align-items: center;
   width: 90%;
+  height: 80px;
   margin: 0 auto;
 `;
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 
 import { HeaderStyle, HeaderLogoLink, MyFav } from "./header.style";
 
@@ -14,12 +15,12 @@ const Header = ({ favSortClicked, handleFavSortClick }) => {
       <nav>
         {!favSortClicked ? (
           <MyFav onClick={handleFavSortClick}>
-            <FontAwesomeIcon icon={faHeart} style={{ color: "#FF84FF" }} />
+            <FontAwesomeIcon icon={fasHeart} style={{ color: "#FF84FF" }} />
             &nbsp; My Favourite
           </MyFav>
         ) : (
           <MyFav onClick={handleFavSortClick}>
-            <FontAwesomeIcon icon={faHeart} style={{ color: "#000" }} />
+            <FontAwesomeIcon icon={farHeart} style={{ color: "#000" }} />
             &nbsp; Back to List
           </MyFav>
         )}

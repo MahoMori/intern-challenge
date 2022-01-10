@@ -1,8 +1,10 @@
 import React from "react";
 
+import { FavContainer, NoFav } from "./favourites.style";
+
 const Favourites = ({ toFav, favImages }) => {
   return (
-    <div>
+    <FavContainer>
       {favImages.length > 0 ? (
         favImages.map((image) => (
           <div key={image.date}>
@@ -16,9 +18,9 @@ const Favourites = ({ toFav, favImages }) => {
           </div>
         ))
       ) : (
-        <h3>There's no favourite images!</h3>
+        <NoFav>There's no favourite images!</NoFav>
       )}
-    </div>
+    </FavContainer>
   );
 };
 

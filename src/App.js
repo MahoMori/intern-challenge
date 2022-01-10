@@ -32,12 +32,6 @@ function App() {
       setImages(data);
       setLoading(false);
     });
-    // const { data } = await axios.get(url);
-    // data.map((d) => {
-    //   d.isFav = false;
-    //   return d;
-    // });
-    // setImages(data);
   };
 
   useEffect(() => {
