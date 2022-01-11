@@ -18,7 +18,7 @@ const Favourites = ({ toFav, favImages }) => {
           </div>
         ))
       ) : (
-        <NoFav>There's no favourite images!</NoFav>
+        <NoFav>There's no favourite image!</NoFav>
       )}
     </FavContainer>
   );

@@ -34,28 +34,31 @@ function App() {
     });
   };
 
-  useEffect(() => {
-    fetchImages();
-  }, []);
-
-  // filter favourite images
-  const [favImages, setFavImages] = useState([]);
-
-  const filterFavs = () => {
-    const copyImages = images.filter((image) => image.isFav === true);
-    setFavImages(copyImages);
+  const fetchStorageImages = () => {
+    setFavImages(JSON.parse(localStorage.getItem("favourites")));
   };
 
-  // useEffect(() => {
-  //   const copyImages = images;
-  //   copyImages.filter((image) => image.isFav === true);
-  //   setFavImages(copyImages);
-  //   console.log("favimages", favImages);
-  // }, [images]);
+  useEffect(() => {
+    fetchImages();
+    fetchStorageImages();
+  }, []);
+
+  // like/dislike and add to local storage
+  const [favImages, setFavImages] = useState([]);
 
   const toFav = (image) => {
     image.isFav ? (image.isFav = false) : (image.isFav = true);
-    filterFavs();
+
+    const copyImages = images.filter((image) => image.isFav === true);
+    const storageImages = JSON.parse(localStorage.getItem("favourites"));
+    if (storageImages === null) {
+      localStorage.setItem("favourites", JSON.stringify(copyImages));
+      setFavImages(JSON.parse(localStorage.getItem("favourites")));
+    } else {
+      storageImages.push(image);
+      localStorage.setItem("favourites", JSON.stringify(storageImages));
+      setFavImages(JSON.parse(localStorage.getItem("favourites")));
+    }
   };
 
   return (
