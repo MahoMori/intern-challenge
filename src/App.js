@@ -11,12 +11,6 @@ import Favourites from "./components/favourites/favourites.component";
 const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}&count=20`;
 
 function App() {
-  // Favourite in nav bar clicked or not
-  const [favSortClicked, setFavSortClicked] = useState(false);
-  const handleFavSortClick = () => {
-    favSortClicked ? setFavSortClicked(false) : setFavSortClicked(true);
-  };
-
   // loading or not
   const [loading, setLoading] = useState(true);
 
@@ -36,7 +30,10 @@ function App() {
   };
 
   const fetchStorageImages = () => {
-    setFavImages(JSON.parse(localStorage.getItem("favourites")));
+    const storageImages = JSON.parse(localStorage.getItem("favourites"));
+    if (storageImages !== null) {
+      setFavImages(storageImages);
+    }
   };
 
   useEffect(() => {
@@ -50,24 +47,45 @@ function App() {
   const toFav = (image) => {
     image.isFav ? (image.isFav = false) : (image.isFav = true);
 
-    const copyImages = images.filter((image) => image.isFav === true);
     const storageImages = JSON.parse(localStorage.getItem("favourites"));
+
     if (storageImages === null) {
-      localStorage.setItem("favourites", JSON.stringify(copyImages));
+      // when there is no local data
+      localStorage.setItem(
+        "favourites",
+        JSON.stringify(images.filter((image) => image.isFav === true))
+      );
       setFavImages(JSON.parse(localStorage.getItem("favourites")));
     } else {
-      storageImages.push(image);
-      localStorage.setItem("favourites", JSON.stringify(storageImages));
-      setFavImages(JSON.parse(localStorage.getItem("favourites")));
+      // when there is local data
+      // check if it exists in local data
+      const doesExist = storageImages.find(
+        (storageImage) => storageImage.date === image.date
+      );
+      console.log("doesExist", doesExist);
+
+      if (doesExist === undefined) {
+        // if it doesn't exist in local data, like it
+        storageImages.push(image);
+        localStorage.setItem("favourites", JSON.stringify(storageImages));
+        setFavImages(JSON.parse(localStorage.getItem("favourites")));
+      } else {
+        // if it exists, unlike it
+        const unlikedStorageImages = storageImages.filter(
+          (storageImage) => storageImage.date !== image.date
+        );
+        localStorage.setItem(
+          "favourites",
+          JSON.stringify(unlikedStorageImages)
+        );
+        setFavImages(JSON.parse(localStorage.getItem("favourites")));
+      }
     }
   };
 
   return (
     <>
-      <Header
-        favSortClicked={favSortClicked}
-        handleFavSortClick={handleFavSortClick}
-      />
+      <Header />
       {loading ? (
         // #ffae00
         <SolarSystemLoading color="#000080" size="large" />

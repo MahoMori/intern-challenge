@@ -1,19 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 
 import { HeaderStyle, StyledLink } from "./header.style";
 
-const Header = ({ favSortClicked, handleFavSortClick }) => {
+const Header = ({ handleFavSortClick }) => {
+  const location = useLocation();
   return (
     <HeaderStyle>
       <h1>
         <StyledLink to="/">Space Gallery</StyledLink>
       </h1>
       <nav>
-        {!favSortClicked ? (
+        {location.pathname === "/" ? (
           <h3 onClick={handleFavSortClick}>
             <StyledLink to="/favourites">
               <FontAwesomeIcon icon={fasHeart} style={{ color: "#FF84FF" }} />
