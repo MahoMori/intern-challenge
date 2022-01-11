@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Routes, Route } from "react-router-dom";
 
 import { SolarSystemLoading } from "react-loadingg";
 
@@ -72,20 +73,15 @@ function App() {
         <SolarSystemLoading color="#000080" size="large" />
       ) : (
         <main>
-          {!favSortClicked ? (
-            <Tiles images={images} toFav={toFav} />
-          ) : (
-            <Favourites favImages={favImages} toFav={toFav} />
-          )}
+          <Routes>
+            <Route path="/" element={<Tiles images={images} toFav={toFav} />} />
+            <Route
+              path="/favourites"
+              element={<Favourites favImages={favImages} toFav={toFav} />}
+            />
+          </Routes>
         </main>
       )}
-      {/* <main>
-        {!favSortClicked ? (
-          <Tiles images={images} toFav={toFav} />
-        ) : (
-          <Favourites favImages={favImages} toFav={toFav} />
-        )}
-      </main> */}
     </>
   );
 }

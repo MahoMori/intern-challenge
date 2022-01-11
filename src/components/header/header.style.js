@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const HeaderStyle = styled.header`
   @import url("https://fonts.googleapis.com/css2?family=Unica+One&display=swap");
@@ -12,11 +13,7 @@ export const HeaderStyle = styled.header`
   margin: 0 auto;
 `;
 
-export const HeaderLogoLink = styled.a`
+export const StyledLink = styled(Link)`
   text-decoration: none;
   color: #000;
-`;
-
-export const MyFav = styled.h3`
-  cursor: pointer;
 `;
