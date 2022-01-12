@@ -1,26 +1,20 @@
 import React from "react";
 
-import { FavContainer, NoFav } from "./favourites.style";
+import { NoFavContainer, NoFav } from "./favourites.style";
 
-const Favourites = ({ toFav, favImages }) => {
+import Tiles from "../tiles/tiles.component";
+
+const Favourites = ({ favImages, toFav }) => {
   return (
-    <FavContainer>
+    <>
       {favImages.length > 0 ? (
-        favImages.map((image) => (
-          <div key={image.date}>
-            <img
-              src={image.url}
-              alt={image.title}
-              onClick={() => {
-                toFav(image);
-              }}
-            />
-          </div>
-        ))
+        <Tiles images={favImages} toFav={toFav} />
       ) : (
-        <NoFav>There's no favourite image!</NoFav>
+        <NoFavContainer>
+          <NoFav>There's no favourite image!</NoFav>
+        </NoFavContainer>
       )}
-    </FavContainer>
+    </>
   );
 };
 

@@ -12,7 +12,6 @@ export const TilesContainer = styled.div`
 
 export const EachTile = styled.div`
   position: relative;
-  //   width: 400px;
   width: calc(90% / 2);
   height: 500px;
   object-fit: cover;

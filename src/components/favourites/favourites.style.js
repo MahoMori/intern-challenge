@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FavContainer = styled.div`
+export const NoFavContainer = styled.div`
   height: calc(100vh - 80px);
   position: relative;
   //   background-color: #ffc0cb;
