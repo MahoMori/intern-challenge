@@ -7,6 +7,7 @@ import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import {
   TilesContainer,
   EachTile,
+  FavIcon,
   InfoContainer,
   TitleDate,
   Description,
@@ -19,18 +20,36 @@ function Tiles({ images, toFav }) {
       {images.length > 0 &&
         images.map((image) => (
           <EachTile key={image.date}>
-            <FontAwesomeIcon icon={fasHeart} style={{ color: "#FF84FF" }} />
-            <InfoContainer>
-              <TitleDate></TitleDate>
-              <Description></Description>
-            </InfoContainer>
-            <TileImage
-              src={image.url}
-              alt={image.title}
+            {image.isFav ? (
+              <FavIcon
+                icon={fasHeart}
+                size="xl"
+                onClick={() => {
+                  toFav(image);
+                }}
+              />
+            ) : (
+              <FavIcon
+                icon={farHeart}
+                size="xl"
+                onClick={() => {
+                  toFav(image);
+                }}
+              />
+            )}
+            {/* <FavIcon
+              icon={farHeart}
+              size="xl"
               onClick={() => {
                 toFav(image);
               }}
-            />
+            /> */}
+            <InfoContainer>
+              <TitleDate>{image.title}</TitleDate>
+              <TitleDate>{image.date}</TitleDate>
+              <Description>{image.explanation}</Description>
+            </InfoContainer>
+            <TileImage src={image.url} alt={image.title} />
           </EachTile>
         ))}
     </TilesContainer>
