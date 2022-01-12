@@ -8,7 +8,9 @@ import {
   EachTile,
   FavIcon,
   InfoContainer,
+  InfoShowingDiv,
   TitleDate,
+  InfoHidingDiv,
   Description,
   TileImage,
 } from "./tiles.style";
@@ -36,9 +38,13 @@ function Tiles({ images, toFav }) {
             />
           )}
           <InfoContainer>
-            <TitleDate>{image.title}</TitleDate>
-            <TitleDate>{image.date}</TitleDate>
-            <Description>{image.explanation}</Description>
+            <InfoShowingDiv>
+              <TitleDate>{image.title}</TitleDate>
+              <TitleDate>{image.date}</TitleDate>
+            </InfoShowingDiv>
+            <InfoHidingDiv>
+              <Description>{image.explanation}</Description>
+            </InfoHidingDiv>
           </InfoContainer>
           <TileImage src={image.url} alt={image.title} />
         </EachTile>

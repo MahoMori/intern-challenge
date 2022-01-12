@@ -42,9 +42,15 @@ export const InfoContainer = styled.div`
 
   &:hover {
     height: 425px;
-    overflow: auto;
     background-color: rgba(255, 255, 255, 0.8);
   }
+`;
+
+export const InfoShowingDiv = styled.div``;
+
+export const InfoHidingDiv = styled.div`
+  overflow: auto;
+  height: 80%;
 `;
 
 export const TitleDate = styled.p`
