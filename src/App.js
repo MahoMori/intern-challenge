@@ -8,14 +8,10 @@ import Header from "./components/header/header.component";
 import Tiles from "./components/tiles/tiles.component";
 import Favourites from "./components/favourites/favourites.component";
 
-let apiKey;
-
 // const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}&count=20`;
-// const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=20`;
+const url = `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=20`;
 
 function App() {
-  const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=20`;
-
   // loading or not
   const [loading, setLoading] = useState(true);
 
@@ -42,11 +38,6 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("../.netlify/functions/api")
-      .then((response) => response.json())
-      .then((json) => {
-        apiKey = json.api;
-      });
     fetchImages();
     fetchStorageImages();
   }, []);
