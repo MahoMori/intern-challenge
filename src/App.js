@@ -14,12 +14,6 @@ let apiKey;
 // const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=20`;
 
 function App() {
-  fetch("../.netlify/functions/api")
-    .then((response) => response.json())
-    .then((json) => {
-      apiKey = json.api;
-    });
-
   const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=20`;
 
   // loading or not
@@ -48,6 +42,11 @@ function App() {
   };
 
   useEffect(() => {
+    fetch("../.netlify/functions/api")
+      .then((response) => response.json())
+      .then((json) => {
+        apiKey = json.api;
+      });
     fetchImages();
     fetchStorageImages();
   }, []);
