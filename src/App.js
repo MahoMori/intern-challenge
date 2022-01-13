@@ -8,16 +8,19 @@ import Header from "./components/header/header.component";
 import Tiles from "./components/tiles/tiles.component";
 import Favourites from "./components/favourites/favourites.component";
 
-let url;
+let apiKey;
 
 // const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}&count=20`;
+// const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=20`;
 
 function App() {
   fetch("../.netlify/functions/api")
     .then((response) => response.json())
     .then((json) => {
-      url = json.api;
+      apiKey = json.api;
     });
+
+  const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=20`;
 
   // loading or not
   const [loading, setLoading] = useState(true);
