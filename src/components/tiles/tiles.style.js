@@ -49,6 +49,8 @@ export const InfoContainer = styled.div`
   box-shadow: 2px 2px 10px gray;
   overflow: hidden;
   transition: all 0.3s;
+  // display: grid;
+  // grid-template-rows: 1fr 2fr;
 
   &:hover {
     height: 425px;
@@ -62,12 +64,13 @@ export const InfoContainer = styled.div`
 `;
 
 export const InfoShowingDiv = styled.div`
-  height: 110px;
+  height: 100px;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
 
   @media ${device.tablet} {
     display: block;
+    height: 75px;
   }
 `;
 
@@ -79,7 +82,11 @@ export const TitleDate = styled.p`
 
 export const InfoHidingDiv = styled.div`
   overflow: auto;
-  height: 80%;
+  height: calc(425px - 100px);
+
+  @media ${device.tablet} {
+    height: calc(425px - 75px);
+  }
 `;
 
 export const Description = styled.p`
