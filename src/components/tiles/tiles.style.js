@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { device } from "../../assets/screenSize";
+
 export const TilesContainer = styled.div`
   margin: 0 auto;
   display: flex;
@@ -12,13 +14,21 @@ export const TilesContainer = styled.div`
 
 export const EachTile = styled.div`
   position: relative;
-  width: calc(90% / 2);
+  width: 90%;
   height: 500px;
   object-fit: cover;
   display: flex;
   justify-content: center;
   margin: 15px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+
+  @media ${device.laptopL} {
+    width: calc(90% / 2);
+  }
+
+  @media ${device.desktop} {
+    width: calc(90% / 3);
+  }
 `;
 
 export const FavIcon = styled(FontAwesomeIcon)`
@@ -34,9 +44,9 @@ export const InfoContainer = styled.div`
   bottom: 10px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 3px;
-  width: 80%;
+  width: 90%;
+  height: 100px;
   box-shadow: 2px 2px 10px gray;
-  height: 75px;
   overflow: hidden;
   transition: all 0.3s;
 
@@ -44,19 +54,32 @@ export const InfoContainer = styled.div`
     height: 425px;
     background-color: rgba(255, 255, 255, 0.8);
   }
+
+  @media ${device.tablet} {
+    width: 80%;
+    height: 75px;
+  }
 `;
 
-export const InfoShowingDiv = styled.div``;
+export const InfoShowingDiv = styled.div`
+  height: 110px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
 
-export const InfoHidingDiv = styled.div`
-  overflow: auto;
-  height: 80%;
+  @media ${device.tablet} {
+    display: block;
+  }
 `;
 
 export const TitleDate = styled.p`
   text-align: center;
   font-weight: bold;
   margin: 10px;
+`;
+
+export const InfoHidingDiv = styled.div`
+  overflow: auto;
+  height: 80%;
 `;
 
 export const Description = styled.p`

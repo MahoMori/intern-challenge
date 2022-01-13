@@ -16,7 +16,7 @@ const Header = ({ handleFavSortClick }) => {
       </h1>
       <nav>
         {location.pathname === "/" ? (
-          <h3 onClick={handleFavSortClick}>
+          <h3 onClick={handleFavSortClick} style={{ display: "inline-block" }}>
             <StyledLink to="/favourites">
               <FontAwesomeIcon icon={fasHeart} style={{ color: "#FF84FF" }} />
               &nbsp; My Favourites
