@@ -8,7 +8,15 @@ import Header from "./components/header/header.component";
 import Tiles from "./components/tiles/tiles.component";
 import Favourites from "./components/favourites/favourites.component";
 
-const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}&count=20`;
+let url;
+
+fetch("../.netlify/functions/api")
+  .then((response) => response.json())
+  .then((json) => {
+    url = json.api;
+  });
+
+// const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}&count=20`;
 
 function App() {
   // loading or not
