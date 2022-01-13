@@ -10,15 +10,15 @@ import Favourites from "./components/favourites/favourites.component";
 
 let url;
 
-fetch("../.netlify/functions/api")
-  .then((response) => response.json())
-  .then((json) => {
-    url = json.api;
-  });
-
 // const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}&count=20`;
 
 function App() {
+  fetch("../.netlify/functions/api")
+    .then((response) => response.json())
+    .then((json) => {
+      url = json.api;
+    });
+
   // loading or not
   const [loading, setLoading] = useState(true);
 
