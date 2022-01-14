@@ -89,14 +89,16 @@ export const InfoHidingDiv = styled.div`
 
   @media ${device.tablet} {
     height: 80%;
-    // max-width: 600px;
-    margin-left: 10px;
   }
 `;
 
 export const Description = styled.p`
   margin: 0 15px 10px;
   line-height: 1.6rem;
+
+  @media ${device.tablet} {
+    padding: 0 7px;
+  }
 `;
 
 export const TileImage = styled.img`
