@@ -23,7 +23,6 @@ function Tiles({ images, toFav }) {
           {image.isFav ? (
             <FavIcon
               icon={fasHeart}
-              size="xl"
               onClick={() => {
                 toFav(image);
               }}
@@ -31,7 +30,6 @@ function Tiles({ images, toFav }) {
           ) : (
             <FavIcon
               icon={farHeart}
-              size="xl"
               onClick={() => {
                 toFav(image);
               }}
