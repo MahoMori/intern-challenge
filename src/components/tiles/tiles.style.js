@@ -89,6 +89,8 @@ export const InfoHidingDiv = styled.div`
 
   @media ${device.tablet} {
     height: 80%;
+    // max-width: 600px;
+    margin-left: 10px;
   }
 `;
 
