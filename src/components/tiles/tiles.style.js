@@ -32,11 +32,16 @@ export const EachTile = styled.div`
 `;
 
 export const FavIcon = styled(FontAwesomeIcon)`
-  color: #ff84ff;
+  font-size: 1.75rem;
+  color: #e4007f;
   position: absolute;
-  right: 10px;
+  left: 10px;
   top: 10px;
   cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 2px 2px 10px gray;
+  padding: 10px;
+  border-radius: 50px;
 `;
 
 export const InfoContainer = styled.div`
