@@ -22,11 +22,11 @@ export const EachTile = styled.div`
   margin: 15px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
 
-  @media ${device.laptopL} {
+  @media ${device.laptop} {
     width: calc(90% / 2);
   }
 
-  @media ${device.desktop} {
+  @media ${device.laptopL} {
     width: calc(90% / 3);
   }
 `;
@@ -45,52 +45,51 @@ export const InfoContainer = styled.div`
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 3px;
   width: 90%;
-  height: 100px;
+  height: auto;
   box-shadow: 2px 2px 10px gray;
   overflow: hidden;
   transition: all 0.3s;
-  // display: grid;
-  // grid-template-rows: 1fr 2fr;
 
   &:hover {
     height: 425px;
     background-color: rgba(255, 255, 255, 0.8);
   }
 
+  &:hover div {
+    display: block;
+  }
+
   @media ${device.tablet} {
     width: 80%;
-    height: 75px;
   }
 `;
 
 export const InfoShowingDiv = styled.div`
-  height: 100px;
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-
-  @media ${device.tablet} {
-    display: block;
-    height: 75px;
+  padding: 13px 0;
+  & > :first-child {
+    font-size: 1.25rem;
   }
 `;
 
 export const TitleDate = styled.p`
   text-align: center;
   font-weight: bold;
-  margin: 10px;
+  margin: 2px 10px;
 `;
 
 export const InfoHidingDiv = styled.div`
   overflow: auto;
-  height: calc(425px - 100px);
+  height: 75%;
+  display: none;
 
   @media ${device.tablet} {
-    height: calc(425px - 75px);
+    height: 80%;
   }
 `;
 
 export const Description = styled.p`
-  margin: 0 15px 15px;
+  margin: 0 15px 10px;
+  line-height: 1.6rem;
 `;
 
 export const TileImage = styled.img`
