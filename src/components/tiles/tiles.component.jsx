@@ -44,7 +44,11 @@ function Tiles({ images, toFav }) {
               <Description>{image.explanation}</Description>
             </InfoHidingDiv>
           </InfoContainer>
-          <TileImage src={image.url} alt={image.title} />
+          <TileImage
+            src={image.url}
+            alt={image.title}
+            onClick={() => console.log(image)}
+          />
         </EachTile>
       ))}
     </TilesContainer>

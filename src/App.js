@@ -44,9 +44,26 @@ function App() {
   // like/dislike and add to local storage
   const [favImages, setFavImages] = useState([]);
 
-  const toFav = (image) => {
+  const toFavInHome = (image) => {
     image.isFav ? (image.isFav = false) : (image.isFav = true);
 
+    toFavLocalStorage(image);
+  };
+
+  const toFavInFavourite = (image) => {
+    image.isFav ? (image.isFav = false) : (image.isFav = true);
+    setImages((prevImages) => {
+      return prevImages.map((i) => {
+        if (i.date === image.date) {
+          i.isFav ? (i.isFav = false) : (i.isFav = true);
+        }
+        return i;
+      });
+    });
+    toFavLocalStorage(image);
+  };
+
+  const toFavLocalStorage = (image) => {
     const storageImages = JSON.parse(localStorage.getItem("favourites"));
 
     if (storageImages === null) {
@@ -91,10 +108,15 @@ function App() {
       ) : (
         <main>
           <Routes>
-            <Route path="/" element={<Tiles images={images} toFav={toFav} />} />
+            <Route
+              path="/"
+              element={<Tiles images={images} toFav={toFavInHome} />}
+            />
             <Route
               path="/favourites"
-              element={<Favourites favImages={favImages} toFav={toFav} />}
+              element={
+                <Favourites favImages={favImages} toFav={toFavInFavourite} />
+              }
             />
           </Routes>
         </main>
