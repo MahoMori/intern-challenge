@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const NoFavContainer = styled.div`
   height: calc(100vh - 80px);
   position: relative;
-  //   background-color: #ffc0cb;
 `;
 
 export const NoFav = styled.h3`

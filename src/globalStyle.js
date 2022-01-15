@@ -7,4 +7,5 @@ const GlobalStyle = createGlobalStyle`
     font-family: sans-serif;
   }
 `;
+
 export default GlobalStyle;

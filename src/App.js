@@ -14,9 +14,8 @@ function App() {
   // loading or not
   const [loading, setLoading] = useState(true);
 
-  // fetch images
+  // fetch images from API
   const [images, setImages] = useState([]);
-
   const fetchImages = async () => {
     await axios.get(url).then((result) => {
       const { data } = result;
@@ -29,6 +28,8 @@ function App() {
     });
   };
 
+  // fetch images from local data when the website is loaded
+  const [favImages, setFavImages] = useState([]);
   const fetchStorageImages = () => {
     const storageImages = JSON.parse(localStorage.getItem("favourites"));
     if (storageImages !== null) {
@@ -42,27 +43,14 @@ function App() {
   }, []);
 
   // like/dislike and add to local storage
-  const [favImages, setFavImages] = useState([]);
-
-  const toFavInHome = (image) => {
-    image.isFav ? (image.isFav = false) : (image.isFav = true);
-
-    toFavLocalStorage(image);
+  // change isFav
+  const toFavChangeState = (image) => {
+    image.isFav && window.confirm("Are you sure you want to unlike it?")
+      ? (image.isFav = false)
+      : (image.isFav = true);
   };
 
-  const toFavInFavourite = (image) => {
-    image.isFav ? (image.isFav = false) : (image.isFav = true);
-    setImages((prevImages) => {
-      return prevImages.map((i) => {
-        if (i.date === image.date) {
-          i.isFav ? (i.isFav = false) : (i.isFav = true);
-        }
-        return i;
-      });
-    });
-    toFavLocalStorage(image);
-  };
-
+  // save to or remove from local data
   const toFavLocalStorage = (image) => {
     const storageImages = JSON.parse(localStorage.getItem("favourites"));
 
@@ -99,11 +87,31 @@ function App() {
     }
   };
 
+  const toFavInHome = (image) => {
+    toFavChangeState(image);
+    toFavLocalStorage(image);
+  };
+
+  const toFavInFavourite = (image) => {
+    toFavChangeState(image);
+
+    // change isFav for images state too
+    setImages((prevImages) => {
+      return prevImages.map((i) => {
+        if (i.date === image.date) {
+          i.isFav ? (i.isFav = false) : (i.isFav = true);
+        }
+        return i;
+      });
+    });
+
+    toFavLocalStorage(image);
+  };
+
   return (
     <>
       <Header />
       {loading ? (
-        // #ffae00
         <SolarSystemLoading color="#000080" size="large" />
       ) : (
         <main>
