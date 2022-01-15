@@ -62,7 +62,6 @@ function App() {
       const doesExist = storageImages.find(
         (storageImage) => storageImage.date === image.date
       );
-      console.log("doesExist", doesExist);
 
       if (doesExist === undefined) {
         // if it doesn't exist in local data, like it
@@ -70,15 +69,17 @@ function App() {
         localStorage.setItem("favourites", JSON.stringify(storageImages));
         setFavImages(JSON.parse(localStorage.getItem("favourites")));
       } else {
-        // if it exists, unlike it
-        const unlikedStorageImages = storageImages.filter(
-          (storageImage) => storageImage.date !== image.date
-        );
-        localStorage.setItem(
-          "favourites",
-          JSON.stringify(unlikedStorageImages)
-        );
-        setFavImages(JSON.parse(localStorage.getItem("favourites")));
+        // if it exists and confirm is true, unlike it
+        if (window.confirm("Are you sure you want to unlike this?")) {
+          const unlikedStorageImages = storageImages.filter(
+            (storageImage) => storageImage.date !== image.date
+          );
+          localStorage.setItem(
+            "favourites",
+            JSON.stringify(unlikedStorageImages)
+          );
+          setFavImages(JSON.parse(localStorage.getItem("favourites")));
+        }
       }
     }
   };
