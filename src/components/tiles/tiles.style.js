@@ -41,8 +41,9 @@ export const FavIcon = styled(FontAwesomeIcon)`
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 2px 2px 10px gray;
   // padding: 10px;
-  min-width: 25px;
-  min-height: 25px;
+  width: 25px;
+  height: 25px;
+  -webkit-appearance: none;
   border-radius: 50px;
 `;
 
