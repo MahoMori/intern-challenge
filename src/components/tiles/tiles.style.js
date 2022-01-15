@@ -40,7 +40,8 @@ export const FavIcon = styled(FontAwesomeIcon)`
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 2px 2px 10px gray;
-  // padding: 10px;
+  padding: 10px;
+  display: block;
   width: 25px;
   height: 25px;
   -webkit-appearance: none;
