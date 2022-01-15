@@ -12,7 +12,7 @@ export const TilesContainer = styled.div`
   justify-content: center;
 `;
 
-export const EachTile = styled.div`
+export const EachTile = styled.figure`
   position: relative;
   width: 90%;
   height: 500px;
